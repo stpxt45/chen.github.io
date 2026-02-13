@@ -7,3 +7,11 @@ published: true
 mathjax: yes
 ---
 Test test
+
+<div class='figure'>
+    <img src="/assets/plot full.png"
+         style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
+    <div class='caption'>
+        <span class='caption-label'>Figure x</span> An example of my parallel plot using plotly with python.
+    </div>
+</div>
