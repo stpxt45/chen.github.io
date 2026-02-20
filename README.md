@@ -1,4 +1,4 @@
-# Daniel Chen's Personal Website
+# website
 
 This is my personal website built with Jekyll, hosted on GitHub Pages. Visit it at [danielchen0.github.io](https://danielchen0.github.io).
 
