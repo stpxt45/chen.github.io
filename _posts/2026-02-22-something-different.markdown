@@ -14,10 +14,10 @@ Recall that the Transformer architecture consists of three parts: the Decoder, t
 Up to now, all mentions of "Attention" have referred to "Self Attention", where a token pays attention to other tokens in the same sequence. Cross Attention is a mechanism where a token pays attention to tokens in a different sequence. In particular, Cross Attention is used to connect the Encoder and the Decoder.
 
 <div class='figure'>
-    <img src="/assets/plot-full.png"
+    <img src="/assets/Plot-full.png"
          style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
-        <span class='caption-label'>Figure 1.</span> The transformer architecture with labels for the encoder, decoder, and cross attention. (Choi, 2024)
+        <span class='caption-label'>Figure 1.</span> I have changed the caption for a test. (Choi, 2024)
     </div>
 </div>
 
