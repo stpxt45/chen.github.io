@@ -31,8 +31,9 @@ To avoid further digression, let me get into what I made.
         <span class='caption-label'>Figure 1.</span> My parallel plot chart for 100 parametric runs of the ASHRAE baseline hospital. 
     </div>
 </div>
+I just so happened to be interviewing for a position and got to talking about E+ for their energy modeling workflows. The topic of the internal project from my previous company came up as it related to their early-stage parametric design methods too. I guess everyone is doing something similar these days?
 
-I made my own parallel plot tool (above) for this very purpose from scratch. Granted it’s very rough but the following is to show a proof of concept for what I’m going for. I used EnergyPlus (E+) to run parametric options for a code baseline hospital in New York City (ASHRAE 90.1, Appendix G [I forgot which year]).
+I used EnergyPlus (E+) to run quick and dirty parametric options for a code baseline hospital in New York City (ASHRAE 90.1, Appendix G [I forgot which year]). The nice thing is with E+ I could generate some somewhat realistic parametric runs rather than random numbers to demonstrate the parallel plot tool, which, since I couldn't just take what I was working on at my old company, I had to make from scratch (shown above). Granted it’s very rough but the following is to show a proof of concept for what I’m going for.
 
 Below is a use case in which R-31 walls and roofs are chosen (IP units), for any orientation of the buidling, with the lowest performing windows. The chart highlights the pathways possible and the corresponding energy use intensities. The roughness shows - some irrelevant pathways are still shown and the colours need to be clearer to show the different path options. 
 
@@ -44,34 +45,77 @@ Below is a use case in which R-31 walls and roofs are chosen (IP units), for any
     </div>
 </div>
 
-In words, once the encoder has processed the input sentence, the cross attention mechanism feeds the final encoding to each decoder block of the decoding stack.
+I thought I would have to program this over weeks of extensive coding or even using a vibe coding tool to accelerate the process. Turns out, as seems to always be the case, someone else in the world did the exact same thing or similar and posted about it on the Internet. Using plotly for Python and Pandas, I was able to develop in about a day a functionally equivalent parallel plot chart which could load in the same type of csv with columns of parametric results. It doesn’t come with any bells and whistles at the moment. Features such as buttons to select the location, building type, size, and so on. It was honestly harder to get the right version of Python set up and using command prompt to install all the packages. Overall, a lot more straightforward than I expected. 
 
-## What I’m thinking of working on next
+The code was simply this:
 
-The cross attention mechanism is nearly identical to the self attention mechanism, the main difference now is that in Cross Attention, we port the Key and Value matrices over from the Encoder and the decoder uses its own Query matrix on these encoder matrices. This is illustrated in the diagram below:
+```python
+# Import the library
+import plotly.graph_objects as go
+import pandas as pd
+
+# load dataset
+df = pd.read_csv("yourdata.csv")
+
+
+# create chart
+
+fig = go.Figure(data=
+    go.Parcoords(
+        line = dict(color = df['tedi'],
+                   colorscale = 'Earth',
+                   showscale = False, #set to "True" to show color scale
+                   cmin =your minimum,
+                   cmax =your maximum,
+        dimensions = list([
+            dict(tickvals = [0,90,180,270,360],
+                 label = 'Orientation w.r.t North', values = df['orientation']),
+            dict(tickvals = [5.678,14.195,22.712,31.229,39.746,48.263],
+                 ticktext = ['R-6', 'R-14', 'R-23', 'R-31', 'R-40', 'R-48'],
+                 label = 'Wall R-Value (ft²·°F·hr/BTU)', values = df['wallr']),
+            dict(tickvals = [5.678,14.195,22.712,31.229,39.746,48.263],
+                 ticktext = ['R-6', 'R-14', 'R-23', 'R-31', 'R-40', 'R-48'],
+                 label = 'Roof R-Value (ft²·°F·hr/BTU)', values = df['roofr']),
+             dict(tickvals = [0.088059176, 0.17611835153223,0.264177527, 0.352236703, 0.440295879,0.528355055],
+                 ticktext = ['U-0.09', 'U-0.18', 'U-0.26', 'U-0.35', 'U-0.44', 'U-0.53'],
+                 label = 'Window U-value (BTU/ft²·°F·hr)', values = df['windowu']),
+            dict(range = [4.3,4.4],
+                 visible = True,
+                 label = 'Cooling Demand Intensity (kwhe/sf)', values = df['cooling']),
+            dict(range = [6,9],
+                 label = 'Heating Demand Intensity(kwhe/sf)', values = df['heating']),
+            dict(range = [36.8,39],
+                 label = 'Total Energy Use Intensity (kwhe/sf)', values = df['tedi'])])
+    )
+)
+fig.show()    
+    ...
+```
+Going back to the E+ part, to do the parametric runs, I used jEPlus, which is an external program that basically takes your parameters in a json file and injects them into, say in this case, 100 E+ .idf files and compiles all of them into a results csv, which I could upload into my parallel plot with Pandas. 
+
+Below is a figure showing the inverse use case - trying to reach a target below a certain threshold and seeing the available design options.
 
 <div class='figure'>
-    <img src="/assets/self-attention-vs-cross-attention.jpeg"
+    <img src="/assets/Plot-lower-than-target.png"
          style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
-        <span class='caption-label'>Figure 3.</span> The cross attention mechanism in detail (Benveniste, 2024).
+        <span class='caption-label'>Figure 3. Available pathways for a usage intensity below a certain threshold</span> 
     </div>
 </div>
 
-The math is entirely the same, the magic occurs just by the fact that we are reusing the Key and Value matrices from the Encoder and the Query matrix from the Decoder and performing this fancy rerouting.
+## What I’m thinking of working on next
 
-## But why?
+My main project idea is for Passive House, which uses a different software called PHPP, basically a huge Excel sheet. With PHPP, I still haven’t figured out how to parameterize it for 1000s of different runs yet. What this trial project showed too is that 100 still looks pretty neat on the parallel plot. Maybe I can realistically set that as a minimum. 
 
-Doing this allows each decoder block to pay attention to the final encoding of the input sentence. This is useful because it allows the decoder to use the information from the input sentence to help it generate the next token, and also prevents the decoder from "forgetting" the input sentence (vanishing gradient problem).
+Embodied carbon is something more and more important these days. The OG Building Pathfinder has an embodied carbon pathfinder as well. If I could do it parametrically in tandem with PHPP iterations that would certainly be useful.
 
-## Conclusion
+There’s the whole putting it all on the web aspect as a functional tool. I know nothing about web development. I am also not sure if I’ll stay within Python with this and might redo all of it in Javascript so it’s more straightforward to put online. I will have to look more into it.
 
-That's it, that's really all there is to the Encoder-Decoder Transformer.
+Speaking of the web. 
 
-## References
+For some reason, when I use Pathfinder on my browser on Chrome and Firefox it is very slow to load all that data. I remember back in the day I could load things relatively quickly especially once narrowing down some options, now it seems to be slow in general. Not sure if it’s only on my end. For usability, this should be faster and more responsive. Part of my project is to be able to have a similar number of features while maintaining responsiveness as the whole idea is to be able to manipulate parameters and brainstorm ideas on the fly such as live during meetings. Those of us who presented lots of things on Zoom or Teams know how much of a resource hog they are, let alone if one needed to share their screen. 
 
-Benveniste, D. (2024). What is the difference between self-attention and cross-attention? [LinkedIn post]. LinkedIn. https://www.linkedin.com/posts/damienbenveniste_what-is-the-difference-between-self-attention-activity-7211029906166624257-m0Wn/
+I want to improve some visuals with the graph, such as making it more intuitive to select options than the default with Plotly, more like how it’s done with the original Pathfinder. With all features to be implemented I’d like to keep it running smoothly as well. Again, not sure if that’s an issue with my device or a browser issue. 
 
-Choi, J. (2024, March 2). Where the term “cross-attention” is first used? (couldn’t find the term in Attention is all you need paper) [Question on the Data Science Stack Exchange]. Data Science Stack Exchange. https://datascience.stackexchange.com/questions/128123/where-the-term-cross-attention-is-first-used-couldnt-find-the-term-in-attention-is-all-you-need-paper
+I think in general it would be a great tool in the toolkit for building performance consultants to deploy at client meetings, particularly kickoffs and design charettes where it’s more of an exploratory and brainstorming theme. 
 
-Murel, J., & Noble, J. (2024). What is an encoder-decoder model? [Article]. IBM Think. https://www.ibm.com/think/topics/encoder-decoder-model
