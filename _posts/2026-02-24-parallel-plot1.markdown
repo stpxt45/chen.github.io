@@ -34,7 +34,7 @@ To avoid further digression, let me get into what I made.
 
 I made my own parallel plot tool (above) for this very purpose from scratch. Granted it’s very rough but the following is to show a proof of concept for what I’m going for. I used EnergyPlus (E+) to run parametric options for a code baseline hospital in New York City (ASHRAE 90.1, Appendix G [I forgot which year]).
 
-Below is a use case in which R-31 walls and roofs are chosen (IP units), for any orientation of the buidling, with the lowest performing windows. The chart highlights the pathways possible and the corresponding energy use intensities.
+Below is a use case in which R-31 walls and roofs are chosen (IP units), for any orientation of the buidling, with the lowest performing windows. The chart highlights the pathways possible and the corresponding energy use intensities. The roughness shows - some irrelevant pathways are still shown and the colours need to be clearer to show the different path options. 
 
 <div class='figure'>
     <img src="/assets/Plot-prescriptive.png"
