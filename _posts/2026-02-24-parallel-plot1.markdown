@@ -37,7 +37,7 @@ I made my own parallel plot tool (above) for this very purpose from scratch. Gra
 Below is a use case in which R-31 walls and roofs are chosen (IP units), for any orientation of the buidling, with the lowest performing windows. The chart highlights the pathways possible and the corresponding energy use intensities.
 
 <div class='figure'>
-    <img src="/assets/plot-prescriptive.png"
+    <img src="/assets/Plot-prescriptive.png"
          style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
         <span class='caption-label'>Figure 2.</span> Parallel plot with prescriptive options and highlighted pathways.
