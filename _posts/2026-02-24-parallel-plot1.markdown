@@ -28,16 +28,17 @@ To avoid further digression, let me get into what I made.
     <img src="/assets/Plot-full.png"
          style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
-        <span class='caption-label'>Figure 1.</span> I have changed the caption for a test. (Choi, 2024)
+        <span class='caption-label'>Figure 1.</span> My parallel plot chart for 100 parametric runs of the ASHRAE baseline hospital. 
     </div>
 </div>
 
-Something we should first clarify is how exactly the connection is made. The original diagram above is a bit confusing, but Murel and Noble (2024) provide a more clear explanation:
+I made my own parallel plot tool (above) for this very purpose from scratch. Granted it’s very rough but the following is to show a proof of concept for what I’m going for. Below is a use case in which R-31 walls and roofs are chosen (IP units), for any orientation of the hospital, with the lowest performing windows. The chart highlights the pathways possible and the corresponding energy use intensities.
+
 <div class='figure'>
-    <img src="/assets/ibm-cross-attention.jpg"
+    <img src="/assets/plot-prescriptive"
          style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
-        <span class='caption-label'>Figure 2.</span> The cross attention mechanism when expanded fully (Murel & Noble, 2024).
+        <span class='caption-label'>Figure 2.</span> Parallel plot with prescriptive options and highlighted pathways.
     </div>
 </div>
 
