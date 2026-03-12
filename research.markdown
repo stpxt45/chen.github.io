@@ -10,6 +10,6 @@ page_id: research
 
 <p>
     Chen, A. (2022) <a
-href='https://www.researchgate.net/publication/367179793_Occupancy_detection_and_prediction_with_sensors_and_online_machine_learning_Case_study_of_the_Elmia_exhibition_building_in_Jonkoping' target = '_blank'> Occupancy detection and prediction with sensors and online machine learning: Case study of the Elmia exhibition building in Jönköping. Master's Thesis at KTH Royal Institute of Technology. 
+href='https://www.researchgate.net/publication/367179793_Occupancy_detection_and_prediction_with_sensors_and_online_machine_learning_Case_study_of_the_Elmia_exhibition_building_in_Jonkoping' target = '_blank'> Occupancy detection and prediction with sensors and online machine learning: Case study of the Elmia exhibition building in Jönköping. </a> Master's Thesis at KTH Royal Institute of Technology. 
                  
 </p>
