@@ -78,6 +78,8 @@ My initial results for this were close to the original, R2 of 0.780876 and MAE o
 
 # Next steps
 
+At the conclusion of my thesis and after a final discussion within our project team, we outlined some possible next steps that other students could do as their own master’s projects that would build off the foundation we created. We made headway into how to use machine learning and sensor data to gain insight onto the observed state of the conditioned occupied space, via CO2/occupancy detection. But there is a lot of potential for how to use this to improve efficiency of the system. 
+
 <div class='figure'>
     <img src="/assets/future-work1.png"
         style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
@@ -86,11 +88,18 @@ My initial results for this were close to the original, R2 of 0.780876 and MAE o
     </div>
 </div>
 
+
+We also discussed how this predicted CO2 could be implemented into the HVAC controller. This is something I would like to try in the near term. I’m thinking of programming a DCV controller to minimize CO2 in occupied times while minimizing usage overall in unoccupied times, with a control variable input of current CO2 (the reactive approach) and testing energy results compared to if I fed the controller future CO2 inputs. I would have to implement a simulated energy meter as well in this case, as the compared metric. Still very early thoughts on this in detail, though this concept has always been sort of in the back of my head since I finished the thesis. 
+
+Further, rather than simply predicted future CO2 an hour ahead as we have been to start, it would potentially be useful to predict trends, such as if there will likely be occupancy again in a short time, such as with a lunch break, or a longer term if no occupancy, such as the end of the event day. This data imbalance could be possibly solved with more sensor inputs to predict a manufactured data point of “occupied” vs. “non-occupied: long term”, where the inputs are, in addition to CO2 averaged for the zone, to multiple locations of CO2, temperature, ventilation flow rates, and occupancy counts at main entry and exit points. 
+
+That’s all for now, folks. 
+
 <div class='figure'>
     <img src="/assets/future-work2.png"
         style="width: 100%; height: 100%; display: block; margin: 0 auto;"/>
     <div class='caption'>
-        <span class='caption-label'>Figure 7. Big picture: how the machine learning model could be expanded or integrated into a full AI agent HVAC controller for the exhibition hall zone.</span> 
+        <span class='caption-label'>Figure 7. </span>Big picture: how the machine learning model could be expanded or integrated into a full AI agent HVAC controller for the exhibition hall zone.
     </div>
 </div>
 
