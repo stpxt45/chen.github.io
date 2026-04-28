@@ -88,12 +88,7 @@ At the conclusion of my thesis and after a final discussion within our project t
     </div>
 </div>
 
-
 We also discussed how this predicted CO2 could be implemented into the HVAC controller. This is something I would like to try in the near term. I’m thinking of programming a DCV controller to minimize CO2 in occupied times while minimizing usage overall in unoccupied times, with a control variable input of current CO2 (the reactive approach) and testing energy results compared to if I fed the controller future CO2 inputs. I would have to implement a simulated energy meter as well in this case, as the compared metric. Still very early thoughts on this in detail, though this concept has always been sort of in the back of my head since I finished the thesis. 
-
-Further, rather than simply predicted future CO2 an hour ahead as we have been to start, it would potentially be useful to predict trends, such as if there will likely be occupancy again in a short time, such as with a lunch break, or a longer term if no occupancy, such as the end of the event day. This data imbalance could be possibly solved with more sensor inputs to predict a manufactured data point of “occupied” vs. “non-occupied: long term”, where the inputs are, in addition to CO2 averaged for the zone, to multiple locations of CO2, temperature, ventilation flow rates, and occupancy counts at main entry and exit points. 
-
-That’s all for now, folks. 
 
 <div class='figure'>
     <img src="/assets/future-work2.png"
@@ -103,3 +98,6 @@ That’s all for now, folks.
     </div>
 </div>
 
+Further, rather than simply predicted future CO2 an hour ahead as we have been to start, it would potentially be useful to predict trends, such as if there will likely be occupancy again in a short time, such as with a lunch break, or a longer term if no occupancy, such as the end of the event day. This data imbalance could be possibly solved with more sensor inputs to predict a manufactured data point of “occupied” vs. “non-occupied: long term”, where the inputs are, in addition to CO2 averaged for the zone, to multiple locations of CO2, temperature, ventilation flow rates, and occupancy counts at main entry and exit points. 
+
+That’s all for now, folks. 
